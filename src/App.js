@@ -1,5 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Toggle from './Toggle';
+
+import { useTitleInput } from './hooks/useTitleInput';
 
 const formSubmit = (value, setValue) => {
   // eslint-disable-next-line no-console
@@ -8,11 +10,7 @@ const formSubmit = (value, setValue) => {
 };
 
 const App = () => {
-  const [name, setName] = useState('');
-
-  useEffect(() => {
-    document.title = name;
-  });
+  const [name, setName] = useTitleInput('');
 
   return (
     <div className="main-wrapper">
