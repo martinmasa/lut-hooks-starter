@@ -1,6 +1,12 @@
 import React, { useState } from 'react';
 import Toggle from './Toggle';
 
+const formSubmit = (value, setValue) => {
+  // eslint-disable-next-line no-console
+  console.log(`Form submitted with ${value}!`);
+  setValue('');
+};
+
 const App = () => {
   const [name, setName] = useState('');
 
@@ -10,8 +16,15 @@ const App = () => {
 
       <Toggle />
 
-      <h3>{name}</h3>
-      <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          formSubmit(name, setName);
+        }}
+      >
+        <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
+        <button type="submit">Submit</button>
+      </form>
     </div>
   );
 };
